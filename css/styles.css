@@ -1,0 +1,208 @@
+:root {
+    --primary: #082444;
+    --secondary: #337171;
+    --secondary-light: #4a9e9e;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--primary);
+    color: var(--white);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ===== Fondo ===== */
+.page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+/* Glows */
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    animation: float 20s ease-in-out infinite;
+}
+
+.glow-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--secondary);
+    top: -200px;
+    left: -150px;
+    animation-delay: 0s;
+}
+
+.glow-2 {
+    width: 500px;
+    height: 500px;
+    background: #1a4a6b;
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -7s;
+}
+
+.glow-3 {
+    width: 350px;
+    height: 350px;
+    background: var(--secondary-light);
+    top: 50%;
+    left: 60%;
+    opacity: 0.15;
+    animation-delay: -14s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* Grid pattern */
+.grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 20%, transparent 70%);
+}
+
+/* ===== Contenido ===== */
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+/* Logo */
+.logo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-ring {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: spin 30s linear infinite;
+}
+
+.logo-ring::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--secondary-light);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--secondary-light);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.logo {
+    width: 440px;
+    height: auto;
+    filter: drop-shadow(0 0 40px rgba(74, 158, 158, 0.3));
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { filter: drop-shadow(0 0 40px rgba(74, 158, 158, 0.3)); }
+    50% { filter: drop-shadow(0 0 60px rgba(74, 158, 158, 0.5)); }
+}
+
+/* Enlaces */
+.links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.6rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.link:hover {
+    background: rgba(51, 113, 113, 0.3);
+    border-color: var(--secondary-light);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(51, 113, 113, 0.3);
+}
+
+.link svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .logo {
+        width: 280px;
+    }
+
+    .logo-ring {
+        width: 340px;
+        height: 340px;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .link {
+        font-size: 0.85rem;
+        padding: 0.7rem 1.3rem;
+    }
+}
